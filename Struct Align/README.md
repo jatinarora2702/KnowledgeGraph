@@ -1,15 +1,12 @@
-CompExpansion
--------------
+# CompExpansion
 
 Labeled Dataset Expansion using Structural Alignment
 
-Steps for Running
------------------
+# Steps for Running
 
 For successfully running this code, clone the repository, https://github.com/jatinarora2702/CompBase.git
 
-Reference
----------
+# Reference
 
 Wiltrud Kessler and Jonas Kuhn (2015)
 "Structural Alignment for Comparison Detection"

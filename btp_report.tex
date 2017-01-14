@@ -1,0 +1,498 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{Product Knowledge Graph from User reviews and recommendations}
+
+\author{Jatin Arora \\ 13CS10057}
+\begin{document}
+\maketitle
+\begin{center}
+A report submitted for \\
+\textbf{B.Tech. Project Part 1}	\\
+in \\
+\textbf{Computer Science and Engineering}  \\  
+\end{center}
+\begin{center}
+\textbf{Guides:}\\
+Prof. Pawan Goyal\\
+Dr. Sayan Pathak\\
+\end{center}
+\begin{figure}
+\centering
+\includegraphics[width=0.3\textwidth]{download.png}
+
+\end{figure}
+
+
+\pagebreak
+
+\section*{ ACKNOWLEDGEMENT \centering }
+\vspace{20px}
+I am deeply grateful to my supervisor Prof. Pawan Goyal  and Dr. Sayan pathak for giving me the opportunity to work on this project. I am thankful to his aspiring guidance, invaluably constructive friendly advice during the course of this project. I am sincerely grateful to him for sharing his truthful and illuminating views on a number of issues related to the project.
+
+I am also thankful to my teachers of the Department of Computer Science and Engineering, Indian Institute of Technology Kharagpur, who have instilled in me the scientific spirit of inquiry, experimentation, observation and inference, without which I would not have been able to produce this work. I hope I will be able to rise up to the high standards set by my predecessors in this department. 
+\vspace{20px}
+
+-Jatin Arora
+
+4th November 2016
+\pagebreak
+
+
+
+\section*{CERTIFICATE \centering }
+
+\vspace{20px}
+
+This is to certify that the report entitled “Product Knowledge Graph from User Reviews and Recommendations” submitted by Jatin Arora, in the Department of Computer Science and Engineering, Indian Institute of Technology, Kharagpur, India, for the award of the degree of Bachelor of Technology, is a record of an original research work carried out by him under my supervision and guidance. This report fulfills all the requirements as per the rules and regulations of this institute. Neither this report nor any part of it has been submitted for any degree or academic award elsewhere to the best of my knowledge. 
+
+\vspace{100px}
+\noindent
+Prof. Pawan Goyal \\
+Dept. of Computer Science and Engineering \\
+Indian Institute of Technology, Kharagpur  \\
+Kharagpur, India, 721302
+
+\pagebreak
+
+\section{Introduction}
+People often look for products with some desired features. While selecting a product, many things are taken into account, such as, what features the product has and what are the values/range of those features , how does the product perform under certain conditions when compared to other products. During  selection, people compare the products  on some selected attributes of their choice.  Very often values of these attributes are mentioned in the product specifications itself such as, for a camera, the price, weight ,megapixels etc. are clearly written. But sometimes users are also interested in a number of attributes which are subjective in nature and cannot be measured as such. For e.g. auto-focus speed of a camera, noise performance, low light performance etc. Thus a user simply cannot make comparison between two products on these features based on the specifications only. In such cases the user is bound to take opinions from some other users who have used both the products and have enough knowledge about them.
+
+
+\subsection{Brief description  of a Product Review}
+Various e-commerce websites allow users to post their experience after using a product. In these reviews, the users usually express their opinions about the product, the features they liked and if any feature needs improvement. Users also compare among different products and  make alternate product recommendations to the readers. Usually a rating is also associated with these reviews where the users score the product out of 5 or 10 
+points. The websites also allows the readers to vote on these reviews. So a reader up-votes a review if he finds it helpful. So the ratio of total up-votes and total votes is said to be the \textbf{helpfulness score} of a review.  \\ 
+
+
+\subsection{Some observations on helpfulness score}
+A study on 50,000 reviews which had at least one vote \\ 
+Average helpfulness score for all reviews =  \textbf{0.67}\\ 
+Average helpfulness score for reviews listing pro-cons =  \textbf{0.81} \\ 
+Average helpfulness score of reviews which mention at least one other product = \textbf{0.78} \\
+Thus  we can claim that reviews describing the various features of a product or  mentioning it's pro-cons or making a comparison with other products are more helpful to the readers.
+
+
+\section{Problem Description}
+Based on product reviews given by users on various e-commerce websites and blogs, we want to extract various information about a product such as what are it's important features, how good are theses features and how useful do users find them. We also aim to extract the relationships among various products based on their features, e.g. two products have similar price but, one is better than other in terms of a particular feature. Thus, the idea is to construct a product knowledge graph where the nodes are the products and edges are a relationship between them. This graph can be thought of as a collection of (e1, r, e2) pairs, where e1 and e2 are two entities and r is a semantic relation among a fixed set of possible relations.	\\~\\
+\noindent
+Example: For a knowledge graph of cameras, nodes can be say, (Nikon Coolpix S8100) and (Cannon PowerShot), and say, Nikon has better red eye reduction than Cannon as per the reviews, so, we have an edge directed from Cannon to Nikon with a weight signifying how much better Nikon is than Cannon in terms of red eye reduction.   
+
+\section{Procedure Overview}
+
+A brief overview of the steps in making the product knowledge graph
+\begin{enumerate}
+\item \textbf{Data collection:} Crawling product reviews from e-commerce websites as well as blogs. We also extract some useful meta-data associated with reviews as well such as the rating, up-votes, total votes.
+\item \textbf{Sentiment analysis of the user reviews} : Identify review sentences where a product comparison is done. Then in any such sentence, identify the products under comparison, the aspect/feature of the product being compared and users' opinion about that feature. Finally, also capture the direction of opinion among the products in the review.
+\item \textbf{Preparation of the knowledge graph} : From the information extracted above, for each product make a node in the graph. For every comparison based review sentence identified make an edge between the products under comparison depicting the feature being compared. Device a mapping from opinion words to weights of theses edges in the graph.
+\item \textbf{Query the graph:} With the product knowledge graph at our disposal, providing a algorithm to order the search results according to query relevance. 
+
+\end{enumerate}
+
+\section{Dataset Used}
+Websites from which data was crawled : Amazon.com and Amazon.in \\
+Domain : Cameras and Electronic Gadgets \\
+\textbf{Amazon.com}\\
+Total no. of products for which reviews crawled =  1260\\
+Total no. reviews = 1,26,410\\
+Total no. of users proving reviews = 70,023\\
+\textbf{Amazon.in}\\
+Total no of products for which reviews crawled =  50\\
+Total no  reviews = 5,532\\
+Total no of users proving reviews = 4,329\\~\\
+\noindent
+Another completely annotated data set was used (Jindal and Liu, 2006b)[1] to test our approaches. It had around 500 reviews on various products such as cameras, mobile phones, PC, and ipads.The reviews were labeled with feature/aspect, opinion and compared entities.\\~\\
+\noindent
+\textbf{Example Review:}\\
+product/title: Canon EOS 5D 12.8 MP Digital SLR Camera (Body Only)\\
+review/score: 4.0\\
+review/text: This camera is superior in almost every way. I quibble a bit about the location of some of the controls. For example, the on/off switch is not in a great location, Nikon has a better location for this on its cameras. This type of complaint aside, which is entirely subjective in nature, You can't find anything better.\\
+review/helpfulness: 3/7\\
+review/profileName: Frank A. Langheinrich\\
+product/productId: B0007Y791C\\
+review/summary: Canon 5D\\
+review/time: 1178928000\\
+review/userId: A1BANMTXGPYT7M\\
+
+\section{Baseline Approach}
+How to extract a relationship from a review \\
+\begin{itemize}
+\item \textbf{Pre-processing} Split a preview into sentences. Stem and tokenize the words. Perform POS tagging for the words.
+\end{itemize}
+
+\begin{itemize}
+\item \textbf{Identify features / attributes } of the products discussed in the reviews.   Reviews are often compared on some features. Sometimes the user may not explicitly mention the attributes while comparing two products. For e.g.  P1 cheaper than P2. Here the comparison is based on price, but not explicitly mentioned.
+
+\item \textbf{Identify a product} mentioned in a review. User may mention the whole name of product or just the model number. Also user may use pronouns like "this" or "it" to reference the product for which he is writing the review. 
+
+\item \textbf{Identify the opinion} user mentioned for that particular aspect.
+
+\item \textbf{Extract relationships} from the reviews. Identify instances where the user mentions products, aspect and a opinion .\\ 
+ E.g.    Sentence : “ Canon D1 is has better image quality than Nikon 500D ”.
+
+   Entity+ = Canon D1 \\
+   Entity- = Nikon 500D \\
+   Aspect = image quality\\
+   Opinion = better \\Relationship = (Canon D1,  image quality , better , Nikon 500D)\\
+\end{itemize}
+
+
+\subsection{Identifying features/aspects in a review}
+  Going through sample reviews , blogs , camera specific sites , a list of popular   attributes for camera domain  was created. These features usually associated with a specific functionality of a camera and are most likely to mentioned in a review wherever there is a comparison among products. Eg. megapixel, expensive, compact, storage space, low light sensitivity, buffer, zoom, noise reduction, display etc.
+
+A total of 55 attributes were listed. We present two ways identify an aspect, one with the dictionary matching where we match aspects from our aspect list in a review sentence. We also present a machine learning approach where we consider all Noun and verb words in a sentence as possible aspects and use a binary classifier to classify them as aspect and non aspect.
+
+\subsection{Identifying a product in a review} 
+An exhaustive list of camera models was made from e-commerce websites. Users may not always write the complete name of a product, instead they may write just the model number (an alpha-numeric string) in a review to mention a product. So a mapping for each product to its unique product code which a user is most likely to mention was created.\\E.g. Canon Power Shot A2300 -- A2300.\\
+Sometimes, product name is not explicitly mentioned, but just a reference is made, like, 'This camera is better...'. 
+We identify two product entities, one is the entity+ and entity-. Entity+ is the product that usually comes first in the comparison, although not necessarily. For eg. D500 is better than 600D. Here entity+ is D500 and entity- is 600D.
+
+\subsection{Identifying opinion}
+Once the aspect and comparing entities are identified, depending on the position of the aspect and entities, we extract the opinion words by matching a part of a sentence to a POS pattern.
+
+\subsection{Filtering Reviews}
+We only consider reviews where user mentions at least one other product. \\
+\textbf{Assumption :} User is  making a comparison between the product for which review is being written (model1) and the other product. (model2)\\
+\textbf{Filtering:}\\
+Total Reviews in database : around 1.2 lakh \\
+total reviews where other product name and adjective = 1657 \\
+total potential sentences with other product name = 8696 \\
+total potential statements with other product name and adjective = 3550 \\\\
+\textbf{Out of 1657 Reviews: }\\
+training reviews = 1000 \\
+test reviews = 657 \\\\
+\textbf{ Training Set: }\\potential statements with other product name and adjective  : 2155\\\\
+\textbf{Test set}\\
+Potential test cases from Amazon.com :  657\\
+Potential test cases from amazon.in : 80
+
+\subsection{Extracting Relationships using Hand-Built Patterns}
+ Relationship = (entity+ , aspect , opinion , entity-)
+
+\begin{itemize}
+\item Identify some common patterns which may fit a sentence where a comparison is being made with other product. There could be a number of possibilities like both the aspect and opinion comes before models in the sentence or one comes before and the other comes after . These patterns should be able to capture a relationship with fair accuracy at the same time they should be generalized and should not over fit.\\
+    E.g. model1   (Adjective)  (Aspect)  model2.\\
+     Canon D9 has better lens than Nikon D1.
+\item Once a Review Sentence fits a pattern, set entity+ and entity- according to the pattern .
+\item Identify the aspect on which comparison is being made from appropriate section of the sentence as specified by the pattern.
+\item Identify the opinion word that describes the aspect in the relationship. It is usually an adjective such as  better , more. This is done by matching a part of sentence with a POS pattern. 
+\end{itemize}
+
+\subsection{Patterns Used}
+\textbf{model1} = for which review was written. 'This' or 'it' is a reference to model1\\
+\textbf{model2} = another model that occurred in the review
+ 
+  \subsubsection{POS Patterns for Opinion finding}
+  \begin{itemize}
+  \item\textbf{Order :}  (ADJ \textbar\ VERB \textbar\ ADVERB \textbar\ DET \textbar\ PREP)*  \\
+  with at least one ADJ or ADVERB \\
+  Eg. "Very high Quality" is a match to this pattern
+  \item \textbf{Order :} (VERB) (ADJ  \textbar\ ADVERB \textbar\ DET \textbar\ PREP)*  \\
+  with at least one ADJ or ADVERB \\
+  Eg. "is way better", "has higher".
+  \end{itemize}
+   
+ \subsubsection{ General Patterns}
+ \begin{itemize}
+ \item \textbf{Order :}  (Aspect and Opinion section ) (Preposition) model2  \\
+      \textbf{Body :}   (String1) (than   \textbar\ as   \textbar\  to  \textbar\ over   \textbar\  compared  \textbar\ from  \textbar\  of) (String2) model2\\
+ \noindent
+    e.g. \textbf{this} camera has\textbf{ far better image quality} than \textbf{D5}.\\
+    e.g. \textbf{Image quality is bar better} in \textbf{ this camera} than \textbf{D5}.
+ \item \textbf{Order} model2  (VERB)  (Aspect Opinion subsection )   *optional (Preposition) model1 \\
+ \textbf{ Body}    model2 + (String1) \\
+e.g. \textbf{D5} has \textbf{sharper zoom} (  \textbf{than D1.}) \\
+e.g. In \textbf{D5} the \textbf{ zoom is much sharper} (  \textbf{than D1.})
+\item \textbf{Order:} (Aspect) (Preposition) (model)  (Opinion section) \\
+ \textbf{Body :}  (String1) (of  \textbar\ in)  (model) (String3) \\
+e.g. The \textbf{zoom} in\textbf{ D9} is  \textbf{far better}
+\item \textbf{Order:} (Opinion Section)  (Preposition) model (Aspect) \\
+ \textbf{Body :}(String1) (than  \textbar\  as  \textbar\  to  \textbar\  over  \textbar\  compared  \textbar\  from  \textbar\  of)  model (String 2)  \\
+e.g.\textbf{ D1} is   \textbf{very similar} to\textbf{  D9} in terms of \textbf{low light sensitivity}.
+\end{itemize}
+
+\section{Results:}
+\subsection{In Training set:}
+Total number of potential sentences with a relationship in training set: \textbf{2155} \\
+Total captured by the patterns : \textbf{697} \\
+
+\noindent
+\textbf{Pattern wise Performance:}\\\\
+\begin{tabular}{ | c || c | c | r |  }
+\hline			
+  Pattern Number & Total Relationships Captured \\ \hline
+  1 & 345 \\ \hline
+  2 & 251\\ \hline
+  3 & 41 \\ \hline
+  4 & 60 \\ \hline
+\end{tabular}
+
+\subsection{In Test Set:}
+\textbf{Using Amazon.com data as test set:}\\
+Total number of reviews  : \textbf{1000}\\
+Total number of potential sentences with a relationship in training set: \textbf{ 1415}\\
+Total captured by the patterns : \textbf{355}\\\\
+\textbf{Rough Precision Estimate:} \\
+Out of 100 relationships random chosen tagged by automated Tagger: \\
+Total cases where aspect-opinion pair correct : \textbf{85} \\
+Total cases with aspect-opinion pair and  Entity+ , Entity- correct : \textbf{68} \\
+Precision - 68\% \\
+
+\noindent
+\textbf{Rough recall Estimate:}\\
+Out of 100 manually tagged relationships:\\
+Cases correctly captured by automated tagger : 52\\
+Recall - 52\%
+
+\subsection{How many times a particular camera model was compared}
+For data in training set, number of times the models occurred in comparisons. In our product knowledge graph , models are the nodes and comparisons are the directed edges between them. \\
+\textbf{Node Degree Distribution:} (Total nodes = 1160) \\\\
+\begin{tabular}{ | c || c | c | r |  }
+\hline			
+  Degree Range & Total number of nodes \\ \hline
+  greater than 30 & 8 \\ \hline
+  20-30 & 8\\ \hline
+  10-20 & 13 \\ \hline
+  5-10 & 20 \\ \hline
+   1-5 & 97 \\ \hline
+    0 & 1017 \\ \hline
+\end{tabular} \\
+\noindent  \\
+This shows that some camera models are very popular and are compared more often then others.
+The models in high degree range have more probability of being compared with another camera.
+
+\subsection{Which were the most compared aspects:}
+Edge Label frequency : \\
+version   :142 \\
+weight    :65 \\
+price     :62\\
+focus     :40\\
+sensor    :25\\
+lens resolution :21\\
+size      :21
+
+\section{Machine Learning based approach to identify aspects and entities}
+In the pattern based approach, we had a list of aspects and product code numbers. There we matched values from lists to words in sentences to identify aspects and models. So it was a dictionary matching based approach. The limitations of this approach is that the dictionary has to provided. So here we present another approach which don't require pre-defined dictionaries.
+
+\subsection{Identifying an aspect}
+Our main idea here is to consider each Noun and verb word in a sentence as a potential aspect.
+Inspired from the work of camera comparison slr by  Kessler and Kuhn [2], we train a binary classifier with some context and dependency parse features.
+The list of features considered are:
+\begin{itemize}
+\item 2 word window around the given word as context
+\item POS of word-1, word-2, word+1, word+2
+\item Relationship with parent in dependency parse tree
+\item POS of parent in  dependency parse tree
+\item Relationship with children in dependency parse tree
+\item POS of children in  dependency parse tree
+\end{itemize}
+
+\subsection{Identifying entity+ and entity-}
+Following the same idea here we build 2 classifiers. We consider only noun words as potential entity. One is binary classifier that classifies a word as either entity or non-entity . Ideally we should get two entities from each comparison  review sentence , but sometimes only one the entity either entity+ or entity- may be present. The next classifier will classify the entity into entity+ and entity- .\\
+\textbf{Features considered for classier 1}:
+
+\begin{itemize}
+\item 2 word window around the given word as context
+\item POS of word-1, word-2, word+1, word+2
+\item Relationship with parent in dependency parse tree
+\item POS of parent in  dependency parse tree
+\item Relationship with children in dependency parse tree
+\item POS of children in  dependency parse tree
+\item POS of intermediate words between given word and identified aspect
+\item dependency parse relationship of given word with identified aspect
+
+\end{itemize}
+
+\textbf{Features considered for 2nd classifier are}: 
+\begin{itemize}
+\item position with respect to aspect, before of earlier in sentence.
+\item If follows a preposition like as, than, on, in, to.
+\item position with respect to the opinion in the sentence.
+
+\end{itemize}
+
+\subsection{Results for Aspect classification }
+We tested the aspect classification task on two set of data set.The first data set was our own Amazon.com reviews which was labeled by the hand built patterns. The other data set is the Jindal and Liu [1] data set which is completely labeled.We compare our results on Jindal and Liu data set with the result obtained by Kessler and Kunh[2] on the same data set.\\
+
+\textbf{The overall procedure to prepare the test set is:}
+\begin{enumerate}
+\item For each review sentence in the data set, split in into words and tokenize it.Use Stanford NLP POS tagger to obtain POS tags and Dependency Parser to obtain dependency parse tree.
+\item Consider each word  as a potential aspect. The word should be either noun or verb and must be at least 4 characters long.
+\item Obtain the mentioned features for the word.
+\item If the word was labeled as aspect, set it as a Yes instance in the test data set. Else 
+set it as a No instance.
+\item Repeat the above steps for word bi-grams as well. The only change is that for the word bi-gram to be considered as an aspect, the POS of both words should be Noun, Noun or Adj, Noun.
+\item Obtain the features for the bi-gram. For dependency parse features consider the first word as the candidate word for parent, children relationships.
+\item If the bi gram was labeled as aspect, set it as 'Yes' instance. Else if the bi-gram itself is not an aspect and both the words individually were not labeled as aspect, set it as 'No' instance.
+
+\end{enumerate}
+\noindent
+On the test data set, we perform 5 fold cross validation using various ML algorithms such as Naive byes, decision trees, SMO.\\\\
+\noindent
+Next We present the results for Amazon data.The total number of yes instances were 462 and No instances were 1842. We focus on the results for Yes instances.\\\\
+\begin{tabular}{ | c || c | c | r |  }
+\hline			
+  Algorithm  & Precision & Recall & F-Measure \\ \hline
+  Naive Bayes & 0.439 & 0.344 & 0.385 \\ \hline
+  SMO & 0.604 & \textbf{0.47} & \textbf{0.52} \\ \hline
+  Decision Tress & \textbf{0.687} & 0.171 & 0.27 \\ \hline
+  Bayesian nets  & 0.488 & 0.264 & 0.342  \\ \hline
+\end{tabular} \\\\
+
+\noindent
+Results on Jindal and Liu data set compared with SRL method by Kessler and Kunh. Total number of 'Yes' instances were 398 and 'No' instances were 4302. We present the results after 5-fold cross validation using various algorithms. \\\\
+\begin{tabular}{ | c || c | c | r |  }
+\hline			
+  Algorithm  & Precision & Recall & F-Measure \\ \hline
+  SRL & 0.58 & 0.30 & 0.40 \\ \hline
+  Naive Bayes & 0.359 & 0.337 & 0.347 \\ \hline
+  SMO & 0.599 & \textbf{0.402} & \textbf{0.48} \\ \hline
+  Decision Tress & \textbf{0.648} & 0.176 & 0.27 \\ \hline
+\end{tabular} \\\\
+
+\noindent
+Results from SMO out performs the SRL method.
+
+\subsection{Discussion on the results}
+There are many ways to express a comparison and the size of the available training
+data is relatively small. Since reviews can be very unstructured, the same thing can be written in various ways in reviews such as:\\
+1.\textbf{Image Quality} is far better in this camera. \\
+2. In this camera, the only improvement is \textbf {image quality}. \\\\
+Thus there is no specific way to identify an aspect and thus we use a combination of features. Usually the near by opinion words help us to identify an aspect.
+We encounter low recall values since not all aspects follow a particular set of features. Most critical are those cases where the opinion word is very far away from aspect and hence doesn't help much to identify the aspect. For e.g. consider this sentence: \\
+Of all things that is better in this camera , what matters  most is \textbf{FPS rate.}\\
+Such statements present us a challenge to improve the recall rate.
+
+\section {Structural Alignment for Data-set Expansion}
+We observe that in order to get a better classification accuracy using the standard classification techniques applied above or for applying deep learning, we require a large amount of labeled data. It is not possible to manually annotate such a large amount of user reviews. But since the higher-level semantic structure of comparisons as they appear in reviews is clear-cut, it could respond favorably to weakly supervised training strategies that start out from a seed set of manually annotated data.(Kessler and Kuhn, 2015)[3] Structural Alignment has been seen to be useful in Semantic Role-based Labeling for data expansion and since, comparisons can be mapped to predicate-argument structure, identification of comparisons can be seen as a SRL problem.
+
+\subsection{Approach}
+The hypothesis is that predicates that appear in a similar syntactic and semantic context will behave similarly with respect to their arguments so that the labels from the seed sentences can be projected to the unlabeled sentences. These newly labeled sentences can then be used as additional training data.
+
+\subsection{Procedure Outline}
+Given a small set of labeled seed sentences (seed corpus) and a large set of unlabeled sentences (expansion corpus), we expand on the predicates identified in the seed sentences. For a predicate 'p' of a seed sentence 's', for every unlabeled sentence 'u', 
+\begin{itemize}
+\item \textbf{Sentence Selection: } Consider 'u' if and only if it contains a predicate compatible with 'p'.
+\item \textbf{Argument Candidate Creation: } Get all argument candidates from 's' and from 'u'.
+\item \textbf{Alignment Scoring: } Score every possible alignment between two argument candidate sets.
+\item Store best scoring alignment and its score if and only if at least one role bearing node is covered.
+\item Finally for every predicate, take up the top 'k' sentences labeled by each predicate 'p' and project the labels from the arguments in the seed sentence 's' to get newly labeled sentences.
+\end{itemize}
+
+\subsection{Creation of Argument Candidates}
+Kessler and Kuhn, 2015 have proposed two methods to select the argument candidates:
+\begin{itemize}
+\item \textbf{Dependency-Filtered: }Use all ancestors of the predicate until the root and their direct descendants plus all descendants of the predicate itself. Remove all conjunctions and prepositions and add their direct children to the candidate set.
+\item \textbf{Path-Filtered: }Take paths from the predicate to each argument in the labeled sentence and search for the exact same paths in unlabeled sentence. All nodes on the path are extracted as candidates.
+\end{itemize}
+
+\subsection{Similarity Measures and Alignment Scoring}
+Similarity of an alignment between two sentences 's' and 'u' is the averaged sum of all word alignment similarities, themselves the averaged sum of different word alignment similarity measures.\\\\
+\textbf{Similarity Measures:}
+\begin{itemize}
+\item \textbf{Sim-vs:} Cosine similarity of co-occurrence vectors of 2 words
+\item \textbf{Sim-neigh:} (Sim-vs of left neighbor + Sim-vs of right neighbor) / 2
+\item \textbf{Sim-dep:} Dependency relation similarity + POS Similarity
+\item \textbf{Sim-tok:} Similarity of distance (No. of tokens) of candidate from predicate
+\item \textbf{Sim-lev:} Similarity in number of 'ups' and 'downs' in dependency tree path from argument to predicate
+\item \textbf{Sim-path:} Average Sim-dep of all words on path from argument to predicate
+\end{itemize}
+Based on these, two combinations of similarity measures are prepared:
+\begin{itemize}
+\item \textbf {Flat Similarities: } Sim-vs, Sim-dep
+\item \textbf {Context Similarities: } Sim-vs, Sim-dep, Sim-neigh, Sim-tok, Sim-lev, Sim-path
+\end{itemize}
+\subsection{Data Expansion Approaches}
+Based on the method chosen for candidate creation and variation of similarity measure used for scoring the candidate alignments, Kessler and Kuhn, 2015  propose four versions of expansion:
+\begin{itemize}
+\item \textbf{Path-Flat:} Path-Filtered candidate creation and Flat similarities
+\item \textbf{Path-Context:} Path-Filtered candidate creation and Context similarities
+\item \textbf{Dep-Flat:} Dependency-Filtered candidate creation and Flat similarities
+\item \textbf{Dep-Context:} Dependency-Filtered candidate creation and Context similarities
+\end{itemize}
+It is observed that \textbf{Dep-Context} gives the best expansion results with the performance being slightly improved over the non-expanded original sample. Hence, for our data-set we use this approach for corpus expansion.
+
+\subsection{Preparation of Word Embeddings}
+Image and Audio processing systems work with rich high-dimensional datasets encoded as vectors of individual raw pixel-intensities for image data, power spectral density coefficients for audio data. So, all the required information is available in the dataset itself. But, this is not so for NLP Tasks as here, words are treated as discrete atomic units and so simply the word itself cannot capture relationships among them. So, we go for a richer representation for words as k-dimensional vectors. Two standard approaches for this are:
+\begin{itemize}
+\item \textbf{Count-based approachs}, which compute stats of how often some word co-occurs with its neighbor words and then reduce the dimensions of the co-occurrence matrix to desired k-dimensional representation for each word.
+\item \textbf{Predictive Models} directly try to predict a word from its neighbors and encode this information as small dense embedding vectors.
+\end{itemize}
+For structural alignment and again later for applying any deep learning approach, we prepare word-embeddings for \textbf{Reviews Corpus on Electronic Gadgets} from \textbf{Amazon}.\\\\
+\textbf{Approaches:}
+\begin{enumerate}
+\item Word2Vec using Tensorflow
+\item GloVe
+\item Context Vectors creation by University of Stuttgart
+\end{enumerate}
+We used these approaches with varying vector sizes, 100, 1000, 2000.
+
+\subsection{Setup}
+\begin{itemize}
+\item We manually labeled \textbf{500} comparison based sentences from Electronics Corpus with Entity+, Entity-, Opinion, Predicate tags. Also we obtained manually tagged sentences on Camera Corpus by Kessler and Kuhn, 2014 [9]
+\item We filtered \textbf{30000} sentences from remaining reviews in Electronics Corpus which had at least one comparative adjective or adverb i.e. 'JJR' or 'RBR' POS Tag.
+\item We passed both, the labeled and unlabeled sentences to \textbf{MATE Dependency Parser}[10] and for the labeled sentences added additional fields for the labeled information to the dependency parse obtained.
+\item Hence prepared labeled and unlabeled sentences are then fed to the system for automated labeling.
+\item To make it efficient, we did the \textbf{processing in paralled} by dividing the unlabeled corpus into \textbf{chunks} of approx. \textbf{4000} sentences each and ran it on departmental servers (both cpu's and gpu's) having 24 or 36 processors each.
+\end{itemize}
+
+\subsection{Evaluation Procedure}
+\begin{itemize}
+\item To test how good the automated labeling is, we randomly picked \textbf{100} sentences and manually checked whether entity, aspect and predicate labeling is correct. \item If aspect is correct, we assign a +1 for the sentence, otherwise a -1. Similarly for the entities and predicates as well. 
+\item Finally we take the average of individual scores of aspects, entity and predicate classification.
+\end{itemize}
+
+\subsection{Results}
+
+\subsection{Observations and System Limitations}
+\begin{itemize}
+\item There are sentences like, 'Nikon has better image quality than Cannon and Sony'. Here, predicate 'better' is used for multiple Entity2's, i.e. 'Cannon' and 'Sony'. Such dependencies are not captured by the system.
+
+\item For aspects which are not uni-grams like 'low light resolution', the system takes in only the root word i.e. 'resolution', as it considers only unigrams as aspects.
+
+\end{itemize}
+
+\section{Deep Learning Approach}
+
+\section{References}
+\begin{enumerate}
+\item Jindal and Liu: http://www.cs.uic.edu/~liub/
+FBS/data.tar.gz \\
+
+\item Detection of Product Comparisons-How Far Does an Out-of-the-Box Semantic Role Labeling System Take You?\\
+W Kessler, J Kuhn - EMNLP, 2013 - aclweb.org \\
+
+\item Structural Alignment for Comparison Detection \\
+Wiltrud Kessler and Jonas Kuhn. RECENT ADVANCES IN NLP.
+
+\item Summarizing Customer Reviews through Aspects and Contexts
+Gupta, Prakhar and Kumar, Sandeep and Jaidka, Kokil.Computational Linguistics and Intelligent Text Processing
+\item Multilingual Semantic Role Labeling\\
+Anders B'orkelund, Love Hafdell, Pierre Nugues. The CoNLL-
+2009 shared task: Syntactic and semantic dependencies
+in multiple languages.
+\item Never-Ending Learning T. Mitchell, 
+,W. Cohen
+,E. Hruschka\\
+\textbf{http://talukdar.net/papers/NELLaaai15.pdf}
+
+\item Generative Modeling of Entity Comparisons in Text.Tkachenko, Maksim and Lauw, Hady W\\
+Proceedings of the 23rd ACM International Conference on Conference on Information and Knowledge Management
+
+\item Knowledge Vault: A Web-Scale Approach to
+Probabilistic Knowledge Fusion\\\textbf{http://www.cs.ubc.ca/~murphyk/Papers/kv-kdd14.pdf}\\
+Dong, Xin and Gabrilovich, Evgeniy and Heitz, Geremy and Horn, Wilko and Lao, Ni and Murphy, Kevin and Strohmann, Thomas and Sun, Shaohua and Zhang, Wei.
+Proceedings of the 20th ACM SIGKDD international conference on Knowledge discovery and data mining
+
+\item Wiltrud Kessler and Jonas Kuhn (2014)
+A Corpus of Comparisons in Product Reviews.
+In Proceedings of the 9th Language Resources and Evaluation Conference (LREC 2014), Reykjavik, Iceland, 28.-30. May 2014, pages 2242-2248.
+
+\end{enumerate}
+
+\end{document}
