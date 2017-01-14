@@ -1,0 +1,51 @@
+Sentence: This camera has just a bit higher learning curve than the Cannon SLRs I've used but about the same with the Nikons.
+
+1	This	this	this	DT	DT	_	_	2	2	NMOD	NMOD	_	_
+2	camera	camera	camera	NN	NN	_	_	3	3	SBJ	SBJ	_	_
+3	has	have	have	VBZ	VBZ	_	_	0	0	ROOT	ROOT	_	_
+4	just	just	just	RB	RB	_	_	9	9	NMOD	NMOD	_	_
+5	a	a	a	DT	DT	_	_	9	9	NMOD	NMOD	_	_
+6	bit	bit	bit	NN	NN	_	_	9	9	NMOD	NMOD	_	_
+7	higher	higher	higher	JJR	JJR	+	+	6	6	AMOD	AMOD	_	_
+8	learning	learn	learn	VBG	VBG	_	_	9	9	NMOD	NMOD	_	_
+9	curve	curve	curve	NN	NN	_	_	3	3	OBJ	OBJ	_	_
+10	than	than	than	IN	IN	_	_	9	9	NMOD	NMOD	_	_
+11	the	the	the	DT	DT	_	_	13	13	NMOD	NMOD	_	_
+12	Canon	canon	canon	NNP	NNP	_	_	13	13	NMOD	NMOD	_	_
+13	SLRs	slr	slr	NNP	NNP	_	_	10	10	PMOD	PMOD	_	_
+14	I	i	i	PRP	PRP	_	_	15	15	SBJ	SBJ	_	_
+15	've	've	've	VBP	VBP	_	_	3	3	TMP	TMP	_	_
+16	used	use	use	VBN	VBN	_	_	15	15	VC	VC	_	_
+17	but	but	but	CC	CC	_	_	16	16	COORD	COORD	_	_
+18	about	about	about	IN	IN	_	_	17	17	CONJ	CONJ	_	_
+19	the	the	the	DT	DT	_	_	20	20	NMOD	NMOD	_	_
+20	same	same	same	JJ	JJ	x	x	18	18	NMOD	NMOD	_	_
+21	with	with	with	IN	IN	_	_	16	16	AMOD	AMOD	_	_
+22	the	the	the	DT	DT	_	_	23	23	NMOD	NMOD	_	_
+23	Nikons	nikons	nikons	NNPS	NNPS	_	_	21	21	PMOD	PMOD	_	_
+24	.	.	.	.	.	_	_	3	3	P	P	_	_
+
+1	This	this	this	DT	DT	_	_	2	2	NMOD	NMOD	_	_	_	_
+2	camera	camera	camera	NN	NN	_	_	3	3	SBJ	SBJ	_	_	A1	A1
+3	has	have	have	VBZ	VBZ	_	_	0	0	ROOT	ROOT	_	_	_	_
+4	just	just	just	RB	RB	_	_	9	9	NMOD	NMOD	_	_	_	_
+5	a	a	a	DT	DT	_	_	9	9	NMOD	NMOD	_	_	_	_
+6	bit	bit	bit	NN	NN	_	_	9	9	NMOD	NMOD	_	_	_	_
+7	higher	higher	higher	JJR	JJR	+	+	6	6	AMOD	AMOD	Y	comparative.01	_	_
+8	learning	learn	learn	VBG	VBG	_	_	9	9	NMOD	NMOD	_	_	_	_
+9	curve	curve	curve	NN	NN	_	_	3	3	OBJ	OBJ	_	_	A0	_
+10	than	than	than	IN	IN	_	_	9	9	NMOD	NMOD	_	_	_	_
+11	the	the	the	DT	DT	_	_	13	13	NMOD	NMOD	_	_	_	_
+12	Canon	canon	canon	NNP	NNP	_	_	13	13	NMOD	NMOD	_	_	_	_
+13	SLRs	slr	slr	NNP	NNP	_	_	10	10	PMOD	PMOD	_	_	A2	_
+14	I	i	i	PRP	PRP	_	_	15	15	SBJ	SBJ	_	_	_	_
+15	've	've	've	VBP	VBP	_	_	3	3	TMP	TMP	_	_	_	_
+16	used	use	use	VBN	VBN	_	_	15	15	VC	VC	_	_	_	_
+17	but	but	but	CC	CC	_	_	16	16	COORD	COORD	_	_	_	_
+18	about	about	about	IN	IN	_	_	17	17	CONJ	CONJ	_	_	_	_
+19	the	the	the	DT	DT	_	_	20	20	NMOD	NMOD	_	_	_	_
+20	same	same	same	JJ	JJ	x	x	18	18	NMOD	NMOD	Y	comparative.02	_	_
+21	with	with	with	IN	IN	_	_	16	16	AMOD	AMOD	_	_	_	_
+22	the	the	the	DT	DT	_	_	23	23	NMOD	NMOD	_	_	_	_
+23	Nikons	nikons	nikons	NNPS	NNPS	_	_	21	21	PMOD	PMOD	_	_	_	A2
+24	.	.	.	.	.	_	_	3	3	P	P	_	_	_	_
