@@ -1,37 +1,18 @@
 import pickle
-import plotly
-import plotly.graph_objs as go
 import codecs
 
 
 def main():
-	fv1 = codecs.open('tmp1.txt', 'r', 'utf-8')
-	fv2 = codecs.open('tmp2.txt', 'r', 'utf-8')
-	vec0 = list()
-	vec1 = list()
-	for line in fv1:
-		vec0.append(float(line))
-	for line in fv2:
-		vec1.append(float(line))
-	fl = codecs.open('word2vec-labels.txt', 'r', 'utf-8')
-	labels = list()
-	for line in fl:
-		labels.append(line)
-	trace = go.Scatter(
-	    x=vec0[0:200],
-	    y=vec1[0:200],
-	    mode='markers+text',
-	    name='Markers and Text',
-	    text=labels[0:200],
-	    textposition='bottom'
-	)
-	layout = go.Layout(
-    	showlegend=False
-	)
-	data = [trace]
-	fig = go.Figure(data=data, layout=layout)
-	plot_url = plotly.offline.plot(fig, filename='word2vec-basic3.html')
-
+	f1 = codecs.open('tmp1.txt', 'w', 'utf-8')
+	f2 = codecs.open('tmp2.txt', 'w', 'utf-8')
+	with open('tsne_word2vec-5-50.pickle', 'rb') as handle:
+		Y = pickle.load(handle)
+	vec = Y[:, 0]
+	for elem in vec:
+		print >> f1, elem  
+	vec = Y[:, 1]
+	for elem in vec:
+		print >> f2, elem
 
 if __name__ == '__main__':
 	main()
