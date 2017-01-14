@@ -1,10 +1,8 @@
 # CompExpansion
 
 Training set expansion of labeled comparisons with structural alignment.
-Code for paper (Kessler and Kuhn, 2015).
 
-__WARNING__: This is research code, it was not written with anybody else in mind nor with the goal of applying it "in real life". So it is hacky and may not be usable at all for you. Also, efficiency was not really my concern, so it is reeeeally slow when you use a lot of data.
-
+This code is developed over the code by Wiltrud Kessler for the paper (Kessler and Kuhn, 2013)
 
 
 ## Prerequisites
@@ -143,15 +141,14 @@ Main class: `de.uni_stuttgart.ims.expansion.ExpandTrainingSet`
 
 ## Licence and References
 
-(c) Wiltrud Kessler
-
-This code is distributed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported license
-[http://creativecommons.org/licenses/by-nc-sa/3.0/](http://creativecommons.org/licenses/by-nc-sa/3.0/)
-
-Please cite:
 Wiltrud Kessler and Jonas Kuhn (2015)
 "Structural Alignment for Comparison Detection"
 In Proceedings of the 10th Conference on Recent Advances in Natural Language Processing (RANLP 2015).
+(c) Wiltrud Kessler
+
+
+This code is distributed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported license
+[http://creativecommons.org/licenses/by-nc-sa/3.0/](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
 
 Copyright notice for `de.uni_stuttgart.ims.expansion.alignment.HungarianAlgorithm.java`:
