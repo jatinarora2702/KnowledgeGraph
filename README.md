@@ -6,7 +6,7 @@ User Reviews on various e-commerce websites have a lot of product comparison bas
 2. Type in the Feature you are for and get the best products
 3. Type in a Product Name and get to know user opinions about its various features
 
-This is my Bachelor Degree Project and is currently under development.
+This is my **Bachelor Degree Project** and is currently under development.
 
 # More Information
 
