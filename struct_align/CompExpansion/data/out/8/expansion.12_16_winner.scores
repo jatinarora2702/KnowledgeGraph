@@ -1,0 +1,6 @@
+0.42188131283981484 / winner (19,winner,NN,PRD,16) / It isn't as good as a $300.00 or more IPod, but for its price it is clearly a winner and will actually do more than the IPod.
+{design=price (0.483 0.897+0.675+0.500+0.167+0.375+0.281), Canon=it (0.783 0.612+0.837+0.500+1.000+1.000+0.750), winner=winner (0.000 0.000)}
+0.35815979235277773 / winner (18,winner,NN,NMOD,19) / I'll just have to wait until this stupid format war gets a little closer to seeing a winner emerge.
+{design=war (0.587 0.909+0.741+1.000+0.333+0.292+0.250), Canon=closer (0.487 0.580+0.592+0.250+1.000+0.375+0.125), winner=winner (0.000 0.000)}
+0.19309650334320985 / winner (31,winner,NN,OBJ,29) / As the number of songs I own grows, I can always compress them to fit better on the Micro or become more selective about which tunes get synched.Creative has a winner in the Zen Micro.
+{design=has (0.245 0.617+0.243+0.125+0.111+0.267+0.109), Canon=a (0.334 0.464+0.540+0.000+0.250+0.750+0.000), winner=winner (0.000 0.000)}

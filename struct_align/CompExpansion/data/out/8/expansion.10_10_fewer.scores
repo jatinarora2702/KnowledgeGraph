@@ -1,0 +1,60 @@
+0.5212815217712962 / fewer (21,fewer,JJR,NMOD,23) / What it means is that for any given pixel count the Olympus gives you a few more vertical pixels but fewer horizontal ones than a 3:2 ratio sensor like most other DSLRs use.
+{XTi=Olympus (0.713 0.819+0.377+1.000+1.000+0.625+0.458), functions=pixels (0.851 0.839+0.733+0.875+1.000+1.000+0.656), fewer=fewer (0.000 0.000)}
+0.5102802619419753 / faster (16,fast,JJR,NMOD,17) / I used OS X's built-in software RAID feature to stripe the two new drives for faster performance, and everything has been rock solid since.My only complaint would be that I wish Sonnet (and other Mac-centric expansion card vendors) would offer a PCI SATA card with onboard hardware RAID for G4's.
+{XTi=software (0.644 0.717+0.343+0.625+0.500+1.000+0.681), functions=drives (0.886 0.707+0.706+1.000+1.000+1.000+0.906), fewer=faster (0.000 0.000)}
+0.5009168209907408 / better (10,better,JJR,NMOD,11) / You might want to consult other sites for a better price, as of 12/29/02, it was listed at 199.99 on the RCA.com site.
+{XTi=You (0.686 0.283+0.747+0.375+1.000+1.000+0.708), functions=sites (0.817 0.659+0.838+1.000+0.500+1.000+0.906), fewer=better (0.000 0.000)}
+0.5000215673805556 / wider (10,wide,JJR,NMOD,11) / The disadvantage is that if you want eyepieces with wider fields of view, and trust me you will, you need a focuser that will accept both 1.25 and 2 inch eyepieces and accessories.
+{XTi=disadvantage (0.612 0.545+0.500+0.750+0.500+0.750+0.625), functions=eyepieces (0.888 0.940+0.547+0.875+1.000+1.000+0.969), fewer=wider (0.000 0.000)}
+0.49781742963302467 / older (12,older,JJR,NMOD,13) / The other inconvenient thing is the unit doesn't have inputs for older things such as a tape deck or turntable.
+{XTi=thing (0.606 0.565+0.500+0.750+0.500+0.667+0.653), functions=inputs (0.888 0.918+0.565+0.875+1.000+1.000+0.969), fewer=older (0.000 0.000)}
+0.49712131602500004 / better (14,better,JJR,NMOD,15) / It is not worth fixing, instead I will buy a new unit of better quality.
+{XTi=It (0.653 0.468+1.000+0.500+0.200+1.000+0.750), functions=unit (0.838 0.786+0.681+0.750+1.000+1.000+0.813), fewer=better (0.000 0.000)}
+0.49521897389320985 / better (10,better,JJR,MNR,11) / It may seem counterintuitive to select high sensitivity to better control the touchpad.
+{XTi=It (0.688 0.468+0.756+0.375+1.000+1.000+0.528), functions=sensitivity (0.798 0.885+0.652+0.750+1.000+1.000+0.500), fewer=better (0.000 0.000)}
+0.48846716265061724 / bigger (10,bigger,JJR,NMOD,14) / The D80 has all the important characteristics of its bigger brother,especially the bright viewfinder, and with the the 18-200 VR lens it is the perfect travel companion.
+{XTi=D80 (0.669 0.853+0.425+1.000+0.500+0.625+0.611), functions=characteristics (0.796 0.888+0.640+0.875+0.500+1.000+0.875), fewer=bigger (0.000 0.000)}
+0.48782355365771607 / longer (13,long,JJR,NMOD,14) / This is a very good product for repeating your wireless signal over longer distances.
+{XTi=This (0.632 0.406+1.000+0.500+0.250+1.000+0.639), functions=signal (0.831 0.809+0.771+0.625+1.000+1.000+0.781), fewer=longer (0.000 0.000)}
+0.4873191389166666 / older (14,older,JJR,NMOD,15) / This is just what I have been looking for to record stories of older relatives to transcribe.
+{XTi=This (0.554 0.406+1.000+0.500+0.200+0.625+0.594), functions=stories (0.908 0.818+0.629+1.000+1.000+1.000+1.000), fewer=older (0.000 0.000)}
+0.48354499978549376 / easier (15,easy,JJR,NMOD,16) / I ended up using a felt marker to circle the most important buttons for easier access.We tried out all the features last evening, and found the unit performs exceptionally well.
+{XTi=marker (0.537 0.567+0.392+0.375+0.500+0.750+0.639), functions=buttons (0.913 0.909+0.665+1.000+1.000+1.000+0.906), fewer=easier (0.000 0.000)}
+0.4812178915518519 / larger (10,larger,JJR,NMOD,11) / Also appears to have had some effect on the larger pests but that was not my concern because of the small 18 inch high fence we have around the garden.
+{XTi=Also (0.688 0.525+0.772+0.250+1.000+1.000+0.583), functions=effect (0.755 0.834+0.698+0.625+0.500+1.000+0.875), fewer=larger (0.000 0.000)}
+0.4777248440851852 / cheaper (10,cheap,JJR,NMOD,12) / We bought this remote after trying a string of cheaper universal remotes that always came close, but didn't control everything.
+{XTi=We (0.634 0.381+0.714+0.375+1.000+0.750+0.583), functions=string (0.799 0.753+0.543+0.625+1.000+1.000+0.875), fewer=cheaper (0.000 0.000)}
+0.4760184617351852 / bigger (11,bigger,JJR,NMOD,13) / Both cameras require you to buy rechargeable batteries and a bigger memory card to be really usable - that's industry practice, unfortunately.
+{XTi=cameras (0.655 0.679+0.292+0.625+1.000+0.750+0.583), functions=batteries (0.773 0.928+0.617+1.000+0.500+1.000+0.594), fewer=bigger (0.000 0.000)}
+0.4753514048947531 / weaker (17,weak,JJR,NMOD,19) / That coupled with a fairly low power handling give these headphones a great volume range on weaker power sources like most portable devices have.
+{XTi=That (0.554 0.561+0.707+0.375+0.125+1.000+0.556), functions=range (0.872 0.804+0.928+0.625+1.000+1.000+0.875), fewer=weaker (0.000 0.000)}
+0.4751645858780864 / better (16,better,JJR,NMOD,17) / In previous version it is clear translucent with silver foil, which gives a feeling of better quality.
+{XTi=translucent (0.640 0.709+0.450+0.500+1.000+0.750+0.431), functions=feeling (0.786 0.764+0.543+0.625+1.000+1.000+0.781), fewer=better (0.000 0.000)}
+0.47442341907222224 / bigger (11,bigger,JJR,NMOD,12) / Dell seems to hate any third party adapters with their bigger laptops.
+{XTi=Dell (0.681 0.684+0.775+1.000+0.500+0.667+0.458), functions=adapters (0.743 0.867+0.713+1.000+0.500+0.750+0.625), fewer=bigger (0.000 0.000)}
+0.4710408335314815 / better (44,better,JJR,NMOD,45) / Placement is key to the overall performance of any in wall speaker(especially for surround sound setups) so if you haven't ever installed a pair read recommendations in the owners manual for proper placements areas.Pivotable tweeters allows you to directionalize your sound for even better performance.
+{XTi=tweeters (0.684 0.707+0.233+0.750+1.000+0.750+0.667), functions=sound (0.729 0.757+0.552+0.750+0.500+1.000+0.813), fewer=better (0.000 0.000)}
+0.469229504657716 / better (16,better,JJR,NMOD,18) / And ofcourse there is no red lights coming from the mouse, by making use of better invisible optics which should increase the battery life.
+{XTi=lights (0.618 0.687+0.258+0.500+1.000+0.750+0.514), functions=use (0.789 0.548+0.688+0.625+1.000+1.000+0.875), fewer=better (0.000 0.000)}
+0.4686203382398148 / sharper (11,sharp,JJR,NMOD,12) / I compared this against my noise cancelling sony earpods and sharper image overear headphones.
+{XTi=I (0.568 0.400+0.716+0.375+0.500+1.000+0.417), functions=earpods (0.838 0.780+0.809+0.875+1.000+1.000+0.563), fewer=sharper (0.000 0.000)}
+0.4671456270148148 / lower (15,low,JJR,NMOD,17) / The camera has excellent color capabilities, I can create photo quality prints using even lower quality printers, and I can utilize my picture both on and offline.
+{XTi=camera (0.609 0.738+0.425+0.750+0.200+1.000+0.542), functions=prints (0.792 0.866+0.794+1.000+0.500+1.000+0.594), fewer=lower (0.000 0.000)}
+0.4638950283277778 / larger (24,larger,JJR,NMOD,25) / The cameras are identical otherwise, except that Sony has made the FD90 into 1.6 megapixel instead of 1.3. This increases the resolution for larger prints and when you compress them (say to e-mail), they won't be grainy.
+{XTi=Sony (0.569 0.802+0.425+1.000+0.125+0.625+0.438), functions=resolution (0.823 0.862+0.574+0.625+1.000+1.000+0.875), fewer=larger (0.000 0.000)}
+0.463820659208642 / newer (13,new,JJR,NMOD,15) / yes, they dont auto-focus or use all the built-in features of the newer computerized lenses, but they work manually as they did on my f2.
+{XTi=auto-focus (0.547 0.711+0.391+0.125+1.000+0.625+0.431), functions=features (0.844 0.964+0.853+0.875+0.500+1.000+0.875), fewer=newer (0.000 0.000)}
+0.4625374910296296 / cheaper (12,cheap,JJR,NMOD,13) / The long frame makes it stand out the rest of the cheaper brands reminds me ofmy older VCR units.
+{XTi=frame (0.707 0.741+0.416+0.750+1.000+0.750+0.583), functions=rest (0.681 0.849+0.549+0.375+0.500+1.000+0.813), fewer=cheaper (0.000 0.000)}
+0.4615467288919753 / larger (11,larger,JJR,NMOD,13) / It is very easy to attach a mid sized or larger plasma screen.
+{XTi=It (0.629 0.468+1.000+0.500+0.500+0.750+0.556), functions=sized (0.756 0.547+0.737+0.750+1.000+1.000+0.500), fewer=larger (0.000 0.000)}
+0.45982453498487647 / better (10,better,JJR,NMOD,11) / I later discovered the Premier Mounts web site has better manuals you can download from their site.I'd definitely buy it again and have already steered another customer to Amazon for a purchase.
+{XTi=I (0.608 0.400+0.801+0.375+1.000+0.625+0.444), functions=Mounts (0.772 0.901+0.802+0.875+0.333+1.000+0.719), fewer=better (0.000 0.000)}
+0.45945644082962955 / older (17,older,JJR,NMOD,18) / Manual's front picture shows the unit I got, but on the inside, the manual describes and older model that uses a single dial for squelch.
+{XTi=picture (0.528 0.675+0.409+0.750+0.167+0.750+0.417), functions=describes (0.850 0.758+0.907+0.875+1.000+1.000+0.563), fewer=older (0.000 0.000)}
+0.4590020420382716 / older (23,older,JJR,NMOD,26) / Over $100 for this?The whole camera outfit is only a few dollars more.2 Generics for $8 worked for me.Also, batteries on my older Casio lasted forever, and was able to take more pics per charge.
+{XTi=Generics (0.682 0.642+0.433+0.875+1.000+0.667+0.472), functions=batteries (0.695 0.928+0.463+0.500+0.500+1.000+0.781), fewer=older (0.000 0.000)}
+0.45849717740432094 / smaller (10,smaller,JJR,NMOD,12) / I just wanted to back up some of my smaller shareware programs as all I have it is a CD/DVD Combo.
+{XTi=I (0.672 0.400+0.855+0.375+1.000+0.750+0.653), functions=some (0.703 0.716+0.692+0.500+0.500+1.000+0.813), fewer=smaller (0.000 0.000)}
+0.45820869581388884 / smaller (17,smaller,JJR,NMOD,19) / There is a slender outsize zip pocket on one side which will also accomodate files or smaller computer accessories.
+{XTi=pocket (0.536 0.618+0.413+0.500+0.500+0.750+0.438), functions=files (0.838 0.819+0.616+1.000+1.000+1.000+0.594), fewer=smaller (0.000 0.000)}
